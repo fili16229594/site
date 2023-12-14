@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted, onBeforeMount, computed } from 'vue'
-import { useCartStore } from '../store/CartStore'
+import { useCartStore } from '../store/CartStore.ts'
 
 const store = useCartStore()
 
@@ -21,16 +21,17 @@ onBeforeMount(() => {
 
 onMounted(() => {
 
-  if (store[props.id] === undefined){
-    store[props.id] = 1
-    quantity.value = 1
-  }else{
-    quantity.value = store[props.id] + 1
+
+  if (store.products[props.id] === undefined){
+    store.products[props.id] = 1
   }
+
 
   fetch("https://livro.4cc.shop/api/livro/" + props.id)
     .then(response => response.json())
     .then(data => produto.value = data.data);
+
+  quantity.value = store.products[props.id]
 })
 
 function getImgUrl(idImg: string) {
@@ -42,18 +43,18 @@ function getImgUrl(idImg: string) {
 
 function increment(){
   quantity.value = quantity.value + 1
-  store[props.id] = quantity.value
+  store.products[props.id] = quantity.value
 }
 
 function decrement(){
   if(quantity.value > 0){
     quantity.value = quantity.value - 1
-    store[props.id] = quantity.value
+    store.products[props.id] = quantity.value
   }
 }
 
 function update(){
-    store[props.id] = quantity.value
+    store.products[props.id] = quantity.value
 }
 
 </script>
@@ -78,19 +79,19 @@ function update(){
         <div class="my-auto col-7">
             <div class="row text-right">
                 <div class="col-4">
-                    <p class="mob-text">Digital</p>
+                    <p class="mob-text">Brochura</p>
                 </div>
                 <div class="col-4">
                     <div class="row d-flex justify-content-end px-3">
-                        <p class="mb-0" id="cnt1">1</p>
+                        <p class="mb-0" id="cnt1">{{ quantity }}</p>
                         <div class="d-flex flex-column plus-minus">
-                            <span class="vsm-text plus">+</span>
-                            <span class="vsm-text minus">-</span>
+                            <span class="vsm-text plus" @click="increment">+</span>
+                            <span class="vsm-text minus" @click="decrement">-</span>
                         </div>
                     </div>
                 </div>
                 <div class="col-4">
-                    <h6 class="mob-text">$9.99</h6>
+                    <h6 class="mob-text">$29.99</h6>
                 </div>
             </div>
         </div>

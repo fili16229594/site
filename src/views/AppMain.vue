@@ -41,7 +41,7 @@ fetch("https://livro.4cc.shop/api/livro")
       
     </template>
     <template #compra>
-      <router-link  :to="'/addToCompra/' + (livro as any)?.id" class="btn btn-primary">Compre já</router-link>
+      <router-link  :to="'/Carrinho/' + (livro as any)?.id" class="btn btn-primary">Compre já</router-link>
 
     </template>
    

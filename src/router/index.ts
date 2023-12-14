@@ -20,7 +20,7 @@ const routes = [
     component: Login
   },
   {
-    path: '/addToCompra/:id',
+    path: '/Carrinho/:id',
     name: 'Compra',
     component: AppCompra
   },
