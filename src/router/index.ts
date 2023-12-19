@@ -3,6 +3,8 @@ import AppAbout from "../views/AppAbout.vue"
 import AppMain from "../views/AppMain.vue"
 import Login from "../views/Login.vue"
 import AppCompra from "../views/AppCompra.vue"
+import AppCreateUser from "../views/AppCreateUser.vue"
+
 const routes = [
   {
     path: '/',
@@ -29,6 +31,11 @@ const routes = [
     name: 'Carrinho',
     component: AppCompra
   },
+  {
+    path: '/Sign-up/',
+    nome: 'cadastro',
+    component: AppCreateUser
+  }
 ]
 
 const base_url = import.meta.env.BASE_URL

@@ -44,9 +44,12 @@ stote.token = ""
           <p>{{store.email}}</p>
           <button type="button" class="btn btn-warning" @click="logout()">Logout</button>
         </div>
-        <li><router-link to="/cart" class="nav-link px-2 text-white"><i class="bi bi-cart px-4 display-6"></i></router-link></li>
-
-      
+        <div class="px-2 md-2">
+           <router-link to="/Carrinho" class=" btn btn-warning">
+           <i class="bi bi-cart text-white h5">
+          </i><span class="badge  "></span>
+        </router-link>
+        </div>
       </div>
      
    
